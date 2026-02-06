@@ -3,9 +3,9 @@ import * as React from "react";
 
 function Editor() {
     return (
-        <body>
-            <p>This is the editor</p>
-        </body>
+        <h1>
+            This is the editor
+        </h1>
     );
 }
 

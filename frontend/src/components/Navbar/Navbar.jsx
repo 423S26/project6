@@ -16,6 +16,10 @@ function Navbar() {
             <NavLink to="/patients">
                 Patients
             </NavLink>
+
+            <NavLink to="/editor">
+                Editor
+            </NavLink>
         </nav>
     );
 }
