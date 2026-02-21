@@ -6,7 +6,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <DocumentEditorContainerComponent height='900px'></DocumentEditorContainerComponent>
+        <DocumentEditorContainerComponent height='900px'></DocumentEditorContainerComponent>
     </div>
   );
 }
