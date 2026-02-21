@@ -1,0 +1,36 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #004aad;
+    color: white;
+    padding: 15px 40px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header a:hover {
+    opacity: 0.5;
+}
+
+.header-center {
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: #FFF;
+}
+
+.header-doc-link {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: #FFF;
+}
