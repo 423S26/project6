@@ -1,4 +1,2 @@
+I like pineapple on pizza but only on Tuesdays
 
-=======
-I like pineapple on pizza
->>>>>>> feature1-test
