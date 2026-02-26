@@ -1,6 +1,6 @@
 import React from 'react';
-import { DocumentEditorContainerComponent } from '@syncfusion/ej2-react-documenteditor'
 import Header from './components/Header/Header';
+import TextBox from './components/SOAPBox/TextBox'
 import './App.css';
 
 function App() {
@@ -8,7 +8,10 @@ function App() {
     <div className="App">
         <Header />
 
-        <DocumentEditorContainerComponent height='900px'></DocumentEditorContainerComponent>
+        <TextBox title="Subjective" />
+        <TextBox title="Objective" />
+        <TextBox title="Assessment" />
+        <TextBox title="Plan" />
 
     </div>
   );

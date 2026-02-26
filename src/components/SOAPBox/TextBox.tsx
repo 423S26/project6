@@ -2,17 +2,17 @@ import React from "react";
 import "./TextBox.css";
 import { DocumentEditorContainerComponent } from '@syncfusion/ej2-react-documenteditor'
 
-interface Prop {
+interface Title {
     title : string
 }
 
-function TextBox({ title }: Prop) {
+function TextBox({ title }: Title) {
     return (
-        <div>
-            <h2>
+        <div className="textbox">
+            <h2 className="title">
                 { title }
             </h2>
-            <DocumentEditorContainerComponent height='300px'></DocumentEditorContainerComponent>
+            <DocumentEditorContainerComponent width="1200px"></DocumentEditorContainerComponent>
         </div>
     );
 }
