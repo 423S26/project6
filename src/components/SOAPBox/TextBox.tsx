@@ -8,16 +8,17 @@ interface Title {
 }
 DocumentEditorContainerComponent.Inject(Toolbar);
 function TextBox({ title }: Title) {
-    let container = useRef<DocumentEditorContainerComponent>(null);
+    let container = useRef<DocumentEditorContainerComponent | null>(null);
     function save() {
-        container.current.documentEditor.save('sample', 'Docx');
+        container.current?.documentEditor.save('sample', 'Docx');
     }
     return (
         <div className="textbox">
             <h2 className="title">
                 { title }
             </h2>
-            <DocumentEditorContainerComponent width="1200px" height={'590px'}></DocumentEditorContainerComponent>
+            <DocumentEditorContainerComponent width="1200px" height={'590px'}
+            enableToolbar={true} ref={container}></DocumentEditorContainerComponent>
             <button onClick={save}>Save</button>
         </div>
     );
