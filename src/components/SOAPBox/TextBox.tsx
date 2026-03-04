@@ -17,7 +17,7 @@ function TextBox({ title }: Title) {
             <h2 className="title">
                 { title }
             </h2>
-            <DocumentEditorContainerComponent width="1200px"></DocumentEditorContainerComponent>
+            <DocumentEditorContainerComponent width="1200px" height={'590px'}></DocumentEditorContainerComponent>
             <button onClick={save}>Save</button>
         </div>
     );
