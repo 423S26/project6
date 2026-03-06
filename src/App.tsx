@@ -1,7 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Header from './components/Header/Header';
-import TextBox from './components/SOAPBox/TextBox'
+import TextBox from './components/TextBox/TextBox'
 import './App.css';
 
 function App() {

@@ -1,11 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #004aad;
-    color: white;
+    color: black;
     padding: 15px 40px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-image: linear-gradient(to right, #E7717D, #C2CAD0);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    font-family: "QuickSand", sans-serif;
 }
 
 .header a {
@@ -17,20 +23,17 @@
 }
 
 .header a:hover {
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 .header-center {
-    text-align: center;
     font-size: 1.25rem;
     font-weight: 600;
     margin: 0;
-    color: #FFF;
 }
 
-.header-doc-link {
+.header-docs-link {
     font-size: 1.25rem;
     font-weight: 600;
     margin: 0;
-    color: #FFF;
 }
