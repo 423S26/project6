@@ -12,8 +12,24 @@
     <ul>
         <li> <a href="user-documentation.html">User Documentation</a> </li>
         <li> <a href="./index.html">Home Page</a> </li>
-
     </ul>
+    <h3>Project Structure</h3>
+    <pre>
+        project6/
+        |---public/
+        |---docs/                                   # GitHub Pages
+        |    |---index.html
+        |    |---developer-documentation.html
+        |    |---user-documentation.html
+        |---src/
+        |    |---components/                        # React Components
+        |    |       |---Header/
+        |    |       |---TextBox/
+        |    |---App.tsx
+        |    |---setupTests.ts
+        |
+    </pre>
+    <h3>Project setup</h3>
     <p>If you want to manually set up the project, you'll need to install:</p>
     <ul>
         <li>React</li>
@@ -36,6 +52,34 @@
     <p>
         This app is tested using Jest and React Testing Library. To run tests use "npm test" on the command line.
     </p>
+<div>
+    <h3>Common Commands</h3>
+    <ul>
+        <li><code>npm install</code> - Install all dependencies.</li>
+        <li><code>npm start</code> - Run the app in development mode at localhost:3000.</li>
+        <li><code>npm run build</code> - Create a production-ready bundle in the /build folder.</li>
+        <li><code>npm test</code> - Execute the Jest test suite.</li>
+    </ul>
+</div>
+<div>
+    <h3>React Components</h3>
+    <ul>
+        <li>Header → Header on top of page with link to documentation site on GitHub Pages</li>
+        <li>TextBox → Container for Syncfusion document editor and save button</li>
+    </ul>
+</div>
+<div>
+    <h3>Vercel vs GitHub Pages</h3>
+    <p>
+        Vercel is the cloud platform this app is deployed to, and it auto updates the hosted website with each push to the project6 repository. GitHub Pages is the site where the documentation for the application is hosted.
+    </p>
+</div>
+<div>
+     <h3>Data flow of application</h3>
+    <p>
+        App.tsx is basically the index page of the app. It passes the title prop (Subjective, Objective, etc..) to the TextBox component so that each element of SOAP is displayed correctly. The Header component is displayed at the top of the screen and contains the title of the app as well as a link to documentation. The TextBox component contains the logic for the document editor and formats it into boxes in the center of the screen.
+    </p>
+</div>
 </div>
 </body>
 </html>
