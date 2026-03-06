@@ -17,6 +17,6 @@ describe('Header', () => {
         render(<Header />);
         const linkElement = screen.getByRole('link', { name: /Need help?/i });
         expect(linkElement).toBeInTheDocument();
-        expect(linkElement).toHaveAttribute('href', 'https://423s26.github.io/project6/');
+        expect(linkElement).toHaveAttribute('href', 'https://423s26.github.io/project6/docs/user-documentation/');
     })
 })

@@ -8,7 +8,7 @@ function Header() {
                 <h1>SOAP Notes Editor</h1>
             </div>
             <div className="header-docs-link">
-                <a href="https://423s26.github.io/project6/">
+                <a href="https://423s26.github.io/project6/user-documentation/">
                     <h3>
                         Need Help?
                     </h3>
