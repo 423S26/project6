@@ -17,6 +17,13 @@ body {
     border-radius: 8px;
 }
 
+.container img {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
 h1 {
     color: black;
     font-size: 2.2rem;
