@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { registerLicense } from '@syncfusion/ej2-base';
 //expires March 22, 2026
-registerLicense("Ngo9BigBOggjHTQxAR8/V1JGaF1cXmhKYVF0WmFZfVhgcV9CZFZSR2Y/P1ZhSXxVdkdhWX5ZdHBRRmZdUkN9XEA=")
+registerLicense("Ngo9BigBOggjHTQxAR8/V1JHaF5cWWdCekx0R3xbf1x2ZFRMZFRbRnVPIiBoS35RcEVgW3pfcnRdR2JUU0BxVEFe")
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
