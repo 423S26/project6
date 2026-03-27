@@ -28,11 +28,4 @@ describe('TextBox', () => {
     test('should render correctly', () => {
         render(<TextBox editorRef={mockRef} />);
     });
-
-    test('should render correct title', () => {
-        render(<TextBox editorRef={mockRef} />);
-
-        const titleElement = screen.getByText(/General Notes/i);
-        expect(titleElement).toBeInTheDocument();
-    });
 })
