@@ -1,6 +1,17 @@
 import { test, expect } from '@playwright/test';
 
-test('test', async ({ page }) => {
+test('should open the file browser when the open button is clicked', async ({ page }) => {
   await page.goto('https://project6-ten-zeta.vercel.app/');
-  await page.locator('#de_elementmn6h1zimcp1q1s0ople_toolbar_open').click();
+
+  await page.getByRole('button', { name: 'General Document' }).click();
+
+  const openButton = page.locator('button[title="Open"]');
+  
+  await openButton.click();
+
+  const fileChooserPromise = page.waitForEvent('filechooser');
+  await openButton.click();
+  const fileChooser = await fileChooserPromise;
+  
+  expect(fileChooser).toBeDefined();
 });

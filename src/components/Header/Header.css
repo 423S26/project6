@@ -6,7 +6,7 @@
     align-items: center;
     color: black;
     padding: 15px 40px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     background-image: linear-gradient(to right, #E7717D, #C2CAD0);
     position: sticky;
     top: 0;
@@ -20,20 +20,50 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    transition: opacity 0.3s ease;
 }
 
 .header a:hover {
     opacity: 0.6;
 }
 
-.header-center {
+.header-title h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.header-docs-link h3 {
     font-size: 1.25rem;
     font-weight: 600;
     margin: 0;
 }
 
-.header-docs-link {
-    font-size: 1.25rem;
+.header-nav {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-button {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    font-family: "QuickSand", sans-serif;
     font-weight: 600;
-    margin: 0;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.2); 
+    border: 2px solid transparent;
+    border-radius: 8px;
+    color: black;
+    transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.nav-button.active {
+    background: white;
+    color: #E7717D; 
+    border: 2px solid white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }

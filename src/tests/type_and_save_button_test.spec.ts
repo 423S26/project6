@@ -1,9 +1,20 @@
 import { test, expect } from '@playwright/test';
 
-test('test', async ({ page }) => {
+test('should type into the editor and download the document', async ({ page }) => {
   await page.goto('https://project6-ten-zeta.vercel.app/');
-  await page.locator('#de_elementmn6guf5jg0cma566zwh_editor_viewerContainer').click();
+
+  await page.getByRole('button', { name: 'General Document' }).click();
+  const editor = page.locator('.e-documenteditorcontainer');
+  await editor.click();
+
+  await page.keyboard.type('Hello, this is a test of the Syncfusion PDF export.');
+  await page.getByPlaceholder(/Enter document name.../i).fill('Syncfusion_Test_Doc');
+
   const downloadPromise = page.waitForEvent('download');
-  await page.getByRole('button', { name: 'Save' }).first().click();
+  
+  await page.getByRole('button', { name: /Save Document/i }).click();
+  
   const download = await downloadPromise;
+
+  expect(download.suggestedFilename()).toBe('Syncfusion_Test_Doc.pdf');
 });
