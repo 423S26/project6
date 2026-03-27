@@ -11,14 +11,15 @@ test.describe('Navigation & Header', () => {
     await expect(helpLink).toHaveAttribute('href', /user-documentation/);
   });
 
-  test('should switch between General Document and SOAP tabs', async ({ page }) => {
+  test('should switch between General Notes and SOAP Notes tabs', async ({ page }) => {
     await expect(page.getByText('General Notes')).toBeVisible();
 
     await page.getByRole('button', { name: 'SOAP Notes' }).click();
-    await expect(page.getByText('Subjective')).toBeVisible();
-    await expect(page.getByText('General Notes')).not.toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Subjective', exact: true })).toBeVisible();
+    await expect(page.getByText('Save Document (.docx)')).not.toBeVisible();
 
-    await page.getByRole('button', { name: 'General Document' }).click();
-    await expect(page.getByText('General Notes')).toBeVisible();
+    await page.getByRole('button', { name: 'General Notes' }).click();
+    await expect(page.getByText('Save Document (.docx)')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Subjective', exact: true })).not.toBeVisible();
   });
 });

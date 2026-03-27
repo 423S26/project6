@@ -10,14 +10,14 @@ test.describe('General Document (Syncfusion)', () => {
     await expect(editor).toBeVisible();
   });
 
-  test('should export General Document as PDF', async ({ page }) => {
+  test('should export General Document as Docx', async ({ page }) => {
     const fileName = 'General_Report_Alpha';
     await page.getByPlaceholder(/Enter document name/i).fill(fileName);
 
     const downloadPromise = page.waitForEvent('download');
-    await page.getByRole('button', { name: /Save Document/i }).click();
+    await page.getByRole('button', { name: /Save Document (docx)/i }).click();
     const download = await downloadPromise;
 
-    expect(download.suggestedFilename()).toBe(`${fileName}.pdf`);
+    expect(download.suggestedFilename()).toBe(`${fileName}.docx`);
   });
 });

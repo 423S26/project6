@@ -12,9 +12,9 @@ test('should type into the editor and download the document', async ({ page }) =
 
   const downloadPromise = page.waitForEvent('download');
   
-  await page.getByRole('button', { name: /Save Document/i }).click();
+  await page.getByRole('button', { name: /Save Document (.docx)/i }).click();
   
   const download = await downloadPromise;
 
-  expect(download.suggestedFilename()).toBe('Syncfusion_Test_Doc.pdf');
+  expect(download.suggestedFilename()).toBe('Syncfusion_Test_Doc.docx');
 });
