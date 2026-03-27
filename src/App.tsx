@@ -53,7 +53,7 @@ function App() {
                 
                 <div className="filename-container">
                     <label className='filename-label'>
-                        File Name:
+                        Save as:
                     </label>
                     <input
                         type="text" 

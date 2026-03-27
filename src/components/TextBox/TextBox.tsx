@@ -11,7 +11,6 @@ DocumentEditorContainerComponent.Inject(Toolbar);
 function TextBox({ editorRef }: TextBoxProps) {
     return (
         <div className="textbox">
-            <h2 className="title">General Notes</h2>
 
             <div className="editor-container">
                 <DocumentEditorContainerComponent 

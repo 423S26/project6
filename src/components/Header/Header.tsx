@@ -18,7 +18,7 @@ function Header({ activeTab, setActiveTab }: HeaderProps) {
                     className={`nav-button ${activeTab === 'document' ? 'active' : ''}`}
                     onClick={() => setActiveTab('document')}
                 >
-                    General Document
+                    General Notes
                 </button>
                 <button 
                     className={`nav-button ${activeTab === 'soap' ? 'active' : ''}`}
