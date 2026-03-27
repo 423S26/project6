@@ -15,7 +15,7 @@ test.describe('General Document (Syncfusion)', () => {
     await page.getByPlaceholder(/Enter document name/i).fill(fileName);
 
     const downloadPromise = page.waitForEvent('download');
-    await page.getByRole('button', { name: /Save Document (docx)/i }).click();
+    await page.getByRole('button', { name: /Save Document (.docx)/i }).click();
     const download = await downloadPromise;
 
     expect(download.suggestedFilename()).toBe(`${fileName}.docx`);

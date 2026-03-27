@@ -21,7 +21,7 @@ test.describe('SOAP Editor Functional Tests', () => {
     await page.getByPlaceholder(/Enter document name/i).fill(customName);
 
     const downloadPromise = page.waitForEvent('download');
-    await page.getByRole('button', { name: /Save SOAP to PDF/i }).click();
+    await page.getByRole('button', { name: /Save Document (pdf)/i }).click();
     const download = await downloadPromise;
 
     expect(download.suggestedFilename()).toBe(`${customName}.pdf`);

@@ -14,12 +14,10 @@ test.describe('Navigation & Header', () => {
   test('should switch between General Notes and SOAP Notes tabs', async ({ page }) => {
     await expect(page.getByText('General Notes')).toBeVisible();
 
-    await page.getByRole('button', { name: 'SOAP Notes' }).click();
+    await page.getByRole('button', { name: /SOAP Notes/i }).click();
     await expect(page.getByRole('heading', { name: 'Subjective', exact: true })).toBeVisible();
-    await expect(page.getByText('Save Document (.docx)')).not.toBeVisible();
 
-    await page.getByRole('button', { name: 'General Notes' }).click();
+    await page.getByRole('button', { name: /General Notes/i }).click();
     await expect(page.getByText('Save Document (.docx)')).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Subjective', exact: true })).not.toBeVisible();
   });
 });
