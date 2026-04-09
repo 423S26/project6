@@ -17,18 +17,41 @@
     <h3>Project Structure</h3>
     <pre>
         project6/
+        |---.github/
+        |    |---workflows/
+        |    |    |---playwright.yml
         |---public/
+        |    |---index.html
+        |    |---manifest.json
         |---docs/                                   # GitHub Pages
         |    |---index.html
         |    |---developer-documentation.html
         |    |---user-documentation.html
+        |---node_modules/
+        |---playwright-report/
+        |    |---data/
+        |    |---index.html
         |---src/
         |    |---components/                        # React Components
         |    |       |---Header/
+        |    |       |     |---Header.tsx
         |    |       |---TextBox/
+        |    |       |     |---TextBox.tsx          # Uses Syncfusion Document Editor
+        |    |       |---SoapBox/
+        |    |       |     |---SoapBox.tsx          # Uses React Quill
         |    |---App.tsx
+        |    |---index.tsx
+        |    |---tests/
+        |    |---tests-out/
         |    |---setupTests.ts
-        |
+        |---.gitignore
+        |---package.json
+        |---package-lock.json
+        |---jest.config.js
+        |---playwright.config.ts
+        |---README.md
+        |---syncfusion-license.txt                  # Syncfusion license goes here
+        |---tsconfig.json
     </pre>
     <h3>Project setup</h3>
     <p>If you want to manually set up the project, you'll need to install:</p>
@@ -40,6 +63,7 @@
         <li>Package Manager: npm or yarn.</li>
         <li>Jest</li>
         <li>React Testing Library</li>
+        <li>React Quill</li>
     </ul>
     <p>The link for the documentation on how to set up syncfusion with React is below:</p>
     <a href="https://help.syncfusion.com/document-processing/word/word-processor/react/getting-started">Directions to set up document editor</a>
@@ -67,6 +91,7 @@
     <ul>
         <li>Header → Header on top of page with link to documentation site on GitHub Pages</li>
         <li>TextBox → Container for Syncfusion document editor and save button</li>
+        <li>SoapBox → Container for React Quill to save formatting for SOAP</li>
     </ul>
 </div>
 <div>

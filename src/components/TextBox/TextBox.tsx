@@ -13,11 +13,12 @@ function TextBox({ editorRef }: TextBoxProps) {
         <div className="textbox">
 
             <div className="editor-container">
-                <DocumentEditorContainerComponent 
+                <DocumentEditorContainerComponent
                     width="100%" 
                     height='590px'
                     enableToolbar={true} 
                     ref={editorRef}
+                    enableLocalPaste={true}
                 />
             </div>
         </div>

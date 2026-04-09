@@ -1,5 +1,5 @@
 import React from "react";
-import ReactQuill from "react-quill-new";
+import ReactQuill from "react-quill";
 import "react-quill-new/dist/quill.snow.css"; 
 
 interface SoapBoxProps {
