@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react';
 import html2pdf from 'html2pdf.js';
-import { DocumentEditorContainerComponent } from '@syncfusion/ej2-react-documenteditor';
+import ReactQuill from 'react-quill'; 
 import Header from './components/Header/Header';
 import SoapBox from './components/SoapBox/SoapBox';
-import TextBox from './components/TextBox/TextBox';
+import GeneralNotes from './components/GeneralNotes/GeneralNotes';
 import './App.css';
 
 function App() {
@@ -16,12 +16,39 @@ function App() {
     const [plan, setPlan] = useState("");
 
     const printRef = useRef<HTMLDivElement>(null);
-
-    const syncfusionRef = useRef<DocumentEditorContainerComponent | null>(null);
+    
+    const quillRef = useRef<InstanceType<typeof ReactQuill>>(null);
 
     const handleSaveDocument = () => {
         const finalName = fileName.trim() === "" ? "Untitled_Document" : fileName;
-        syncfusionRef.current?.documentEditor.save(finalName, 'Docx');
+        
+        if (!quillRef.current) return;
+
+        // 2. Extract the raw HTML from the Quill editor
+        const htmlContent = quillRef.current.getEditor().root.innerHTML;
+
+        // 3. Wrap it in a Word-compatible HTML shell
+        const documentHtml = `
+            <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+            <head><meta charset='utf-8'><title>${finalName}</title></head>
+            <body>${htmlContent}</body>
+            </html>
+        `;
+
+        // 4. Create a Blob with the MS Word mime type
+        const blob = new Blob(['\ufeff', documentHtml], {
+            type: 'application/msword'
+        });
+
+        // 5. Trigger the browser download
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `${finalName}.doc`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
     };
 
     const handleSaveSoapToPDF = () => {
@@ -66,7 +93,7 @@ function App() {
 
                 {activeTab === 'document' ? (
                     <button className="main-save-btn" onClick={handleSaveDocument}>
-                        Save Document (.docx)
+                        Save Document (.doc)
                     </button>
                 ) : (
                     <button className="main-save-btn" onClick={handleSaveSoapToPDF}>
@@ -78,7 +105,7 @@ function App() {
 
             <div className="main-content-container">
                 {activeTab === "document" ? (
-                    <TextBox editorRef={syncfusionRef} />
+                    <GeneralNotes editorRef={quillRef} />
                 ) : (
                     <>
                         <SoapBox title="Subjective" value={subjective} onChange={setSubjective} />

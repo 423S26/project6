@@ -1,16 +1,7 @@
 .textbox {
-    border-radius: 12px;
-    padding: 25px 35px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    border: 1px solid #eaeaea;
-}
-
-.textbox {
     font-family: "Quicksand", sans-serif;
     color: #333;
     margin-top: 0;
-    border-bottom: 2px solid #C2CAD0;
     padding-bottom: 10px;
     margin-bottom: 25px;
 }
