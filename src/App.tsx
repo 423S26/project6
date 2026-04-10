@@ -24,10 +24,8 @@ function App() {
         
         if (!quillRef.current) return;
 
-        // 2. Extract the raw HTML from the Quill editor
         const htmlContent = quillRef.current.getEditor().root.innerHTML;
 
-        // 3. Wrap it in a Word-compatible HTML shell
         const documentHtml = `
             <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
             <head><meta charset='utf-8'><title>${finalName}</title></head>
@@ -35,12 +33,10 @@ function App() {
             </html>
         `;
 
-        // 4. Create a Blob with the MS Word mime type
         const blob = new Blob(['\ufeff', documentHtml], {
             type: 'application/msword'
         });
 
-        // 5. Trigger the browser download
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = url;
