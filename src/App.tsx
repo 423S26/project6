@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import html2pdf from 'html2pdf.js';
-import ReactQuill from 'react-quill'; 
+import ReactQuill from 'react-quill-new';
 import Header from './components/Header/Header';
 import SoapBox from './components/SoapBox/SoapBox';
 import GeneralNotes from './components/GeneralNotes/GeneralNotes';
@@ -62,7 +62,7 @@ function App() {
         };
 
         element.style.display = 'block';
-        
+
         html2pdf().set(opt).from(element).save().then(() => {
             element.style.display = 'none';
         });
