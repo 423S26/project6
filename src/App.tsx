@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import html2pdf from 'html2pdf.js';
-import ReactQuill from 'react-quill'; 
+import ReactQuill from 'react-quill-new'; 
 import Header from './components/Header/Header';
 import SoapBox from './components/SoapBox/SoapBox';
 import GeneralNotes from './components/GeneralNotes/GeneralNotes';
@@ -14,6 +14,7 @@ function App() {
     const [objective, setObjective] = useState("");
     const [assessment, setAssessment] = useState("");
     const [plan, setPlan] = useState("");
+    const [documentContent, setDocumentContent] = useState("");
 
     const printRef = useRef<HTMLDivElement>(null);
     
@@ -101,7 +102,12 @@ function App() {
 
             <div className="main-content-container">
                 {activeTab === "document" ? (
-                    <GeneralNotes editorRef={quillRef} />
+
+                    <GeneralNotes 
+                        editorRef={quillRef} 
+                        value={documentContent} 
+                        onChange={setDocumentContent} 
+                    />
                 ) : (
                     <>
                         <SoapBox title="Subjective" value={subjective} onChange={setSubjective} />

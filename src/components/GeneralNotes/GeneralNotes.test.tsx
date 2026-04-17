@@ -18,12 +18,23 @@ jest.mock('react-quill-new', () => {
 });
 
 describe('GeneralNotes Component', () => {
-    const setup = () => {
+    const setup = (overrideProps = {}) => {
         const editorRef = React.createRef<any>();
-        const utils = render(<GeneralNotes editorRef={editorRef} />);
-        const editor = screen.getByTestId('quill-mock') as HTMLTextAreaElement;
-        return {
+        const mockOnChange = jest.fn(); 
+        
+        const defaultProps = {
             editorRef,
+            value: '',
+            onChange: mockOnChange,
+        };
+
+        const props = { ...defaultProps, ...overrideProps };
+
+        const utils = render(<GeneralNotes {...props} />);
+        const editor = screen.getByTestId('quill-mock') as HTMLTextAreaElement;
+        
+        return {
+            ...props, 
             editor,
             ...utils,
         };
@@ -38,14 +49,21 @@ describe('GeneralNotes Component', () => {
         expect(editorContainer).toBeInTheDocument();
     });
 
-    test('updates internal state and editor value when typing', async () => {
+    test('displays the correct value passed from props', () => {
+        const testText = "Initial saved document text";
+        const { editor } = setup({ value: testText });
+        
+        expect(editor.value).toBe(testText);
+    });
+
+    test('calls the onChange prop when typing', async () => {
         const user = userEvent.setup();
-        const { editor } = setup();
+        const { editor, onChange } = setup();
 
-        const testNote = 'This is a clinical note.';
-        await user.type(editor, testNote);
+        await user.type(editor, 'A');
 
-        expect(editor.value).toBe(testNote);
+        expect(onChange).toHaveBeenCalledTimes(1);
+        expect(onChange).toHaveBeenCalledWith('A');
     });
 
     test('correctly attaches the editorRef to the Quill instance', () => {
@@ -53,7 +71,6 @@ describe('GeneralNotes Component', () => {
         expect(editorRef.current).not.toBeNull();
         expect(editorRef.current).toBe(editor);
     });
-
 
     test('passes the complex toolbar modules configuration', () => {
         const { editor } = setup();
