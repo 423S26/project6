@@ -3,9 +3,6 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { registerLicense } from '@syncfusion/ej2-base';
-//expires April 22, 2026
-registerLicense("Ngo9BigBOggjHTQxAR8/V1JHaF5cWWdCekx0R3xbf1x2ZFRMZFRbRnVPIiBoS35RcEVgW3pfcnRdR2JUU0BxVEFe");
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
