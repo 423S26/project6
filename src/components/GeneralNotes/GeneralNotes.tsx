@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css";
 
 interface GeneralNotesProps {
     editorRef: React.RefObject<any>;
+    value: string;
+    onChange: (value: string) => void;
 }
 
-function GeneralNotes({ editorRef }: GeneralNotesProps) {
-    const [content, setContent] = useState<string>("");
+function GeneralNotes({ editorRef, value, onChange }: GeneralNotesProps) {
 
     const modules = {
         toolbar: [
@@ -33,8 +34,8 @@ function GeneralNotes({ editorRef }: GeneralNotesProps) {
             <div className="editor-container">
                 <ReactQuill 
                     theme="snow"
-                    value={content}
-                    onChange={setContent}
+                    value={value}         
+                    onChange={onChange}   
                     modules={modules}
                     ref={editorRef}
                     style={{ height: '650px', paddingBottom: '42px' }} 
