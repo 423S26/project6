@@ -1,6 +1,6 @@
 import React from "react";
 import ReactQuill from "react-quill-new";
-import "react-quill-new/dist/quill.snow.css"; 
+import "react-quill-new/dist/quill.snow.css";
 
 interface SoapBoxProps {
     title: string;
@@ -15,7 +15,7 @@ function SoapBox({ title, value, onChange }: SoapBoxProps) {
 
             <div className="editor-container">
                 <ReactQuill 
-                    theme="snow" 
+                    theme="snow"
                     value={value} 
                     onChange={onChange} 
                     style={{ height: '200px', marginBottom: '40px' }} 
