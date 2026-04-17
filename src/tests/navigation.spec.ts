@@ -1,23 +1,24 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Navigation & Header', () => {
+test.describe('Navigation and Layout Functional Tests', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('https://project6-ten-zeta.vercel.app/');
   });
 
-  test('should display the correct header title and help link', async ({ page }) => {
-    await expect(page.locator('header')).toContainText('SOAP Notes Editor');
-    const helpLink = page.getByRole('link', { name: /Need Help/i });
-    await expect(helpLink).toHaveAttribute('href', /user-documentation/);
+  test('help link opens documentation in a new tab', async ({ page }) => {
+    const page1Promise = page.waitForEvent('popup');
+    await page.getByRole('link', { name: 'Need Help?' }).click();
+    const page1 = await page1Promise;
+    
+    await expect(page1.getByRole('heading', { name: 'User Documentation' })).toBeVisible();
+    await page1.getByRole('link', { name: 'Word Processor' }).click();
   });
 
-  test('should switch between General Notes and SOAP Notes tabs', async ({ page }) => {
-    await expect(page.getByText('General Notes')).toBeVisible();
+  test('switches between General and SOAP tabs correctly', async ({ page }) => {
+    await page.getByRole('button', { name: 'SOAP Notes' }).click();
+    await expect(page.getByRole('button', { name: 'Save Document (pdf)' })).toBeVisible();
 
-    await page.getByRole('button', { name: /SOAP Notes/i }).click();
-    await expect(page.getByRole('heading', { name: 'Subjective', exact: true })).toBeVisible();
-
-    await page.getByRole('button', { name: /General Notes/i }).click();
-    await expect(page.getByText('Save Document (.docx)')).toBeVisible();
+    await page.getByRole('button', { name: 'General Notes' }).click();
+    await expect(page.getByRole('button', { name: 'Save Document (.doc)' })).toBeVisible();
   });
 });

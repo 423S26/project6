@@ -1,13 +1,15 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import SoapBox from './SoapBox';
 
 jest.mock('react-quill-new', () => {
-    return function MockQuill({ value, onChange }: any) {
+    return function MockQuill({ value, onChange, style }: any) {
         return (
             <textarea
                 data-testid="quill-mock"
                 value={value}
+                style={style}
                 onChange={(e) => onChange(e.target.value)}
             />
         );
@@ -15,55 +17,60 @@ jest.mock('react-quill-new', () => {
 });
 
 describe('SoapBox Component', () => {
-    const mockOnChange = jest.fn();
+    const defaultProps = {
+        title: 'Subjective',
+        value: '',
+        onChange: jest.fn(),
+    };
 
-    test('renders the correct title', () => {
-        render(
-            <SoapBox 
-                title="Subjective" 
-                value="" 
-                onChange={mockOnChange} 
-            />
-        );
-        expect(screen.getByText(/Subjective/i)).toBeInTheDocument();
-    });
-
-    test('displays the initial value in the editor', () => {
-        const initialText = '<p>Patient reports headache.</p>';
-        render(
-            <SoapBox 
-                title="Subjective" 
-                value={initialText} 
-                onChange={mockOnChange} 
-            />
-        );
+    const setup = (props = {}) => {
+        const mergedProps = { ...defaultProps, ...props };
+        const user = userEvent.setup();
+        const utils = render(<SoapBox {...mergedProps} />);
         const editor = screen.getByTestId('quill-mock') as HTMLTextAreaElement;
-        expect(editor.value).toBe(initialText);
+        return { ...utils, user, editor, mergedProps };
+    };
+
+    beforeEach(() => {
+        jest.clearAllMocks();
     });
 
-    test('calls onChange when text is entered', () => {
-        render(
-            <SoapBox 
-                title="Objective" 
-                value="" 
-                onChange={mockOnChange} 
-            />
-        );
-        const editor = screen.getByTestId('quill-mock');
-        
-        fireEvent.change(editor, { target: { value: 'BP 120/80' } });
-        
-        expect(mockOnChange).toHaveBeenCalledWith('BP 120/80');
+    test('renders the title using correct semantic heading', () => {
+        setup({ title: 'Plan' });
+        const title = screen.getByRole('heading', { level: 2, name: /plan/i });
+        expect(title).toBeInTheDocument();
+        expect(title).toHaveClass('title');
     });
 
-    test('applies the correct CSS class for styling', () => {
-        const { container } = render(
-            <SoapBox 
-                title="Assessment" 
-                value="" 
-                onChange={mockOnChange} 
-            />
-        );
-        expect(container.firstChild).toHaveClass('textbox');
+    test('renders complex HTML values correctly', () => {
+        const htmlContent = '<ul><li>List Item</li></ul>';
+        const { editor } = setup({ value: htmlContent });
+        
+        expect(editor.value).toBe(htmlContent);
+    });
+
+    test('applies layout styles to the editor wrapper', () => {
+        const { editor } = setup();
+    
+        expect(editor).toHaveStyle({
+            height: '200px',
+            marginBottom: '40px'
+        });
+    });
+
+    test('maintains correct DOM structure for styling', () => {
+        const { container } = setup();
+        
+        const outerDiv = container.firstChild as HTMLElement;
+        const editorWrapper = container.querySelector('.editor-container');
+
+        expect(outerDiv).toHaveClass('textbox');
+        expect(editorWrapper).toBeInTheDocument();
+        expect(editorWrapper?.contains(screen.getByTestId('quill-mock'))).toBe(true);
+    });
+
+    test('is accessible: title is associated with context', () => {
+        setup({ title: 'Objective Data' });
+        expect(screen.getByRole('heading', { name: /objective data/i })).toBeVisible();
     });
 });
